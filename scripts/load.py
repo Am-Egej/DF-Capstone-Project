@@ -16,6 +16,10 @@ def load_to_postgres():
         # Connect to PostgreSQL
         with psycopg2.connect(**DB_CONFIG) as conn:
             with conn.cursor() as cursor:
+                
+                # Drop table if it exists
+                cursor.execute("DROP TABLE IF EXISTS atp_tennis_matches;")
+                print(f"✅ If it already existed, the table 'atp_tennis_matches' has been dropped! .")
 
                 # Create table if it doesn't exist
                 cursor.execute("""

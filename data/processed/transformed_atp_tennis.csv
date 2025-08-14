@@ -1,0 +1,4 @@
+tournament,Date,is_grand_slam
+Wimbledon,2023-07-01,True
+US Open,2023-09-01,True
+ATP 250,2023-06-01,False

@@ -1,5 +1,5 @@
 # DF-Capstone-Project
-This project extracts, transforms, and loads professional tennis match data using Python scripts and PostgreSQL. 
+This project extracts, transforms, and loads professional tennis match data (ATP and WTA) using Python scripts and PostgreSQL. 
 It is designed to help analyze player performance, tournament trends, and match outcomes.
 
 ## 📁 Folder structure:
@@ -21,7 +21,7 @@ df-capstone-project/
 ## EPICS, User stories and tasks
 ### EPIC 1: Extract Tennis Data
 #### User Stories
-- As a developer, I want to download the ATP tennis dataset from Kaggle so I can begin processing it.
+- As a developer, I want to download the tennis datasets from Kaggle so I can begin processing it.
 - As a developer, I want to automate the data extraction process so I can keep the dataset up to date.
 
 #### Tasks

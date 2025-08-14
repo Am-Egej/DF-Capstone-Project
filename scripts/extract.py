@@ -4,6 +4,7 @@ import pandas as pd
 
 def fetch_and_save_dataset(dataset_id="dissfya/atp-tennis-2000-2023daily-pull", output_dir=r"data/raw"):
     try:
+        count = 0
         print(f"📦 Downloading dataset: {dataset_id}")
         path = kagglehub.dataset_download(dataset_id)
 
@@ -21,9 +22,11 @@ def fetch_and_save_dataset(dataset_id="dissfya/atp-tennis-2000-2023daily-pull", 
                 output_path = os.path.join(output_dir, file)
                 df.to_csv(output_path, index=False)
                 print(f"📄 Saved: {output_path}")
+                count += 1
             else:
                 print(f"⚠️ Skipped non-CSV file: {file}")
-
+        print(f"{count} csv file(s) saved")
+        return count
     except Exception as e:
         print("❌ Error during dataset fetch:", str(e))
 

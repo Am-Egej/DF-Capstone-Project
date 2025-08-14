@@ -10,7 +10,7 @@ def test_grand_slam_tagging():
         'Date': ['2023-07-01', '2023-09-01', '2023-06-01']
     })
 
-    result = transform_data(sample, save_it=False)
+    result = transform_data([sample, sample], save_it=False)
     grand_slams = result['is_grand_slam'].sum()
-    should_be = 2
+    should_be = 4
     assert grand_slams == should_be, f"Expected {should_be} grand slams, but found {grand_slams}."

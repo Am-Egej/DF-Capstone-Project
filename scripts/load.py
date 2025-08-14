@@ -6,10 +6,10 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from scripts.config import DB_CONFIG
 
-def load_to_postgres():
+def load_to_postgres(transformed_csv = "transformed_tennis_data.csv", table_name = "tennis_matches"):
     try:
         # Load the transformed data
-        df = pd.read_csv('data/processed/transformed_atp_tennis.csv')
+        df = pd.read_csv(f"data/processed/{transformed_csv}")
         df = df.head() # For testing purposes, to be deleted
         df = df.astype(object)  # Converts all columns to native Python types, to be deleted
 
@@ -18,12 +18,12 @@ def load_to_postgres():
             with conn.cursor() as cursor:
                 
                 # Drop table if it exists
-                cursor.execute("DROP TABLE IF EXISTS atp_tennis_matches;")
-                print(f"✅ If it already existed, the table 'atp_tennis_matches' has been dropped! .")
+                cursor.execute(f"DROP TABLE IF EXISTS {table_name};")
+                print(f"✅ If it already existed, the table '{table_name}' has been dropped!")
 
                 # Create table if it doesn't exist
-                cursor.execute("""
-                    CREATE TABLE IF NOT EXISTS mystic_manuscript.atp_tennis_matches (
+                cursor.execute(f"""
+                    CREATE TABLE IF NOT EXISTS {table_name} (
                         Tournament TEXT,
                         Date DATE,
                         Series TEXT,
@@ -50,15 +50,15 @@ def load_to_postgres():
                 values = [tuple(row) for row in records]
 
                 # Insert data using batch method
-                execute_values(cursor, """
-                    INSERT INTO mystic_manuscript.atp_tennis_matches (
+                execute_values(cursor, f"""
+                    INSERT INTO {table_name} (
                         Tournament, Date, Series, Court, Surface, Round, Best_of,
                         Player_1, Player_2, Winner, Rank_1, Rank_2,
                         Pts_1, Pts_2, Odd_1, Odd_2, Score, is_grand_slam
                     ) VALUES %s
                 """, values)
 
-                print(f"✅ Inserted {len(values)} rows into atp_tennis_matches.")
+                print(f"✅ Inserted {len(values)} rows into {table_name}.")
 
     except Exception as e:
         print("❌ Error loading data to PostgreSQL:", str(e))

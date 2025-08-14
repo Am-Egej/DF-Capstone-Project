@@ -18,7 +18,7 @@ def get_row_count(table_name):
         raise
 
 def test_data_loaded_successfully():
-    table_name = "mystic_manuscript.atp_tennis_matches"
+    table_name = "tennis_matches"
     expected_row_count = 5  # Replace later, test 5 for now
     actual_row_count = get_row_count(table_name)
     assert actual_row_count == expected_row_count, (

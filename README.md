@@ -1,5 +1,9 @@
 # DF-Capstone-Project
-## Folder structure:
+This project extracts, transforms, and loads professional tennis match data using Python scripts and PostgreSQL. 
+It is designed to help analyze player performance, tournament trends, and match outcomes.
+
+## 📁 Folder structure:
+<pre>
 df-capstone-project/
 ├── data/
 │   ├── raw/               # Unprocessed files from Kaggle
@@ -12,7 +16,7 @@ df-capstone-project/
 ├── notebooks/             # For exploration and debugging
 ├── requirements.txt       # Python dependencies
 └── README.md              # Project overview
-
+</pre>
 
 ## EPICS, User stories and tasks
 ### EPIC 1: Extract Tennis Data

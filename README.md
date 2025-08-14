@@ -1,5 +1,18 @@
 # DF-Capstone-Project
-App about Tennis games
+## Folder structure:
+df-capstone-project/
+├── data/
+│   ├── raw/               # Unprocessed files from Kaggle
+│   └── processed/         # Cleaned CSVs or intermediate outputs
+├── scripts/
+│   ├── extract.py         # Download and unzip Kaggle data
+│   ├── transform.py       # Clean and enrich data
+│   ├── load.py            # Load into PostgreSQL
+│   └── config.py          # DB credentials and constants
+├── notebooks/             # For exploration and debugging
+├── requirements.txt       # Python dependencies
+└── README.md              # Project overview
+
 
 ## EPICS, User stories and tasks
 ### EPIC 1: Extract Tennis Data
@@ -8,9 +21,9 @@ App about Tennis games
 - As a developer, I want to automate the data extraction process so I can keep the dataset up to date.
 
 #### Tasks
-- Set up Kaggle API credentials.
 - Write a script to download the dataset from Kaggle.
 - Unzip and store the dataset in a local or cloud directory.
+EBI Task:
 - Schedule periodic pulls (e.g., daily or weekly) using a cron job or similar.
 
 ### EPIC 2: Transform Tennis Data
@@ -51,6 +64,7 @@ App about Tennis games
 - Build leaderboard tables (e.g., most Grand Slam wins).
 - Add filters for tournament type, year, surface, etc.
 - Style the app for clarity and responsiveness.
+- Add tooltips and hover info for charts.
 
 
 
@@ -58,4 +72,12 @@ App about Tennis games
 
 
 
-Add tooltips and hover info for charts.
+
+
+
+
+
+
+
+
+

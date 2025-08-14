@@ -3,7 +3,7 @@ import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from scripts.config import DB_CONFIG
-from scripts.load import load_to_postgres
+#from scripts.load import load_to_postgres
 
 def get_row_count(table_name):
     """Helper function to count rows in a PostgreSQL table."""

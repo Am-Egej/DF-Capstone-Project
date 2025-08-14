@@ -2,7 +2,7 @@ import kagglehub
 import os
 import pandas as pd
 
-def fetch_and_save_dataset(dataset_id="dissfya/atp-tennis-2000-2023daily-pull", output_dir=r"data/raw"):
+def fetch_and_save_dataset(dataset_id, output_dir=r"data/raw"):
     try:
         count = 0
         print(f"📦 Downloading dataset: {dataset_id}")
@@ -18,7 +18,7 @@ def fetch_and_save_dataset(dataset_id="dissfya/atp-tennis-2000-2023daily-pull", 
         for file in os.listdir(path):
             file_path = os.path.join(path, file)
             if file.endswith(".csv"):
-                df = pd.read_csv(file_path)
+                df = pd.read_csv(file_path, low_memory=False)
                 output_path = os.path.join(output_dir, file)
                 df.to_csv(output_path, index=False)
                 print(f"📄 Saved: {output_path}")
@@ -31,4 +31,6 @@ def fetch_and_save_dataset(dataset_id="dissfya/atp-tennis-2000-2023daily-pull", 
         print("❌ Error during dataset fetch:", str(e))
 
 if __name__ == "__main__":
-    fetch_and_save_dataset()
+    datasets = ["dissfya/wta-tennis-2007-2023-daily-update", "dissfya/atp-tennis-2000-2023daily-pull" ]
+    for dataset_id in datasets:
+        fetch_and_save_dataset(dataset_id)

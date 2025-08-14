@@ -1,11 +1,12 @@
 import pandas as pd
 
-def clean_data(df = pd.read_csv('data/raw/atp_tennis.csv')):
+def transform_data(df, save_it=True):
     df['Date'] = pd.to_datetime(df['Date'])
-    df['is_grand_slam'] = df['Tournament'].str.contains('Australian Open|Wimbledon|US Open|Roland Garros')
-    df.to_csv('data/processed/transformed_atp_tennis.csv', index=False)
+    df['is_grand_slam'] = df['Tournament'].str.contains('Australian Open|Wimbledon|US Open|Australian Open')
+    if save_it:
+        df.to_csv('data/processed/transformed_atp_tennis.csv', index=False)
     return df
 
 if __name__ == "__main__":
     df = pd.read_csv('data/raw/atp_tennis.csv')
-    clean_data()
+    transform_data(df)

@@ -34,7 +34,7 @@ def test_empty_dataframe_insertion():
     test_table_name = "test_empty_table"
     empty_df = pd.DataFrame(columns=[
         "Tournament", "Date", "Series", "Court", "Surface", "Round", "Best_of",
-        "Player_1", "Player_2", "Winner", "Rank_1", "Rank_2", "Set_Scores",
+        "Player_1", "Player_2", "Winner", "Rank_1", "Rank_2", "Source", "Set_Scores",
         "Set1_Player1", "Set1_Player2", "Set2_Player1", "Set2_Player2",
         "Set3_Player1", "Set3_Player2", "Set4_Player1", "Set4_Player2",
         "Set5_Player1", "Set5_Player2"

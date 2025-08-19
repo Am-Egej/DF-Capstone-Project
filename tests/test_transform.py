@@ -52,8 +52,9 @@ def test_transform_data_with_mocked_csvs():
 
     result_df = transform_data(dfs=mock_dfs, save_it=False)
 
-    # Check that rows before 2020 are filtered out
-    assert all(result_df["Date"].dt.year >= 2020)
+    # Check that dates are from 2020 to 2024
+    assert all(result_df["Date"].dt.year >= 2020), "Found dates before 2020"
+    assert all(result_df["Date"].dt.year <= 2024), "Found dates after 2024"
 
     # Check that excluded columns are dropped
     assert "Pts_1" not in result_df.columns

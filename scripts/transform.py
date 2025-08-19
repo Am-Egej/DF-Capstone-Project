@@ -22,6 +22,11 @@ def transform_data(dfs=[], save_it=True):
     if dfs == []: 
         df_atp = pd.read_csv('data/raw/atp_tennis.csv', low_memory=False)
         df_wta = pd.read_csv('data/raw/wta.csv', low_memory=False)
+
+        # Add source column before appending
+        df_atp['Source'] = 'ATP'
+        df_wta['Source'] = 'WTA'
+
         dfs = [df_atp, df_wta]
 
     transformed_dfs = []
@@ -36,8 +41,8 @@ def transform_data(dfs=[], save_it=True):
         # Extract the date
         df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
 
-        # Select data from 2015 onwards
-        df = df.loc[df['Date'].dt.year >= 2020]
+        # Select data from 2020 to 2024
+        df = df.loc[(df['Date'].dt.year >= 2020) & (df['Date'].dt.year <= 2024)]
 
         # Extract scores per set
         df['Score'] = df['Score'].str.strip()
@@ -60,6 +65,9 @@ def transform_data(dfs=[], save_it=True):
         
         # Apply title case to all string-type columns
         df[df.select_dtypes(include='string').columns] = df.select_dtypes(include='string').apply(lambda x: x.str.title())
+
+        # Change 'Source' back to uppercase
+        df['Source'] = df['Source'].str.upper()
 
         # Append the the transformed DataFrame to transformed_dfs
         transformed_dfs.append(df)

@@ -168,11 +168,6 @@ with tabs[2]:
     col2.metric("Highest Rank Achieved", highest_rank)
     col3.metric("Highest Round Reached", highest_round)
 
-    # Wins Per Year
-    st.subheader("📈 Wins Per Year")
-    wins_per_year = player_df[player_df["Winner"] == selected_player].groupby("Year").size()
-    st.line_chart(wins_per_year)
-
     # Rank Over Time
     st.subheader("📈 Rank Over Time")
     rank_over_time = player_df.sort_values("Date")[["Date", "Rank"]].dropna()
@@ -185,6 +180,11 @@ with tabs[2]:
     )
     top_opponents = opponents.value_counts().head(5)
     st.bar_chart(top_opponents)
+
+    # Wins Per Year
+    st.subheader("📈 Wins Per Year")
+    wins_per_year = player_df[player_df["Winner"] == selected_player].groupby("Year").size()
+    st.line_chart(wins_per_year)
 
     # Summary Table
     st.subheader("📋 Summary Table")

@@ -33,7 +33,7 @@ def transform_data(dfs=[], save_it=True):
         # Drop unnecessary columns
         df.drop(columns=cols_to_exclude, errors='ignore', inplace=True)
 
-        # Extract the date object
+        # Extract the date
         df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
 
         # Select data from 2015 onwards
@@ -44,12 +44,16 @@ def transform_data(dfs=[], save_it=True):
         df['Set_Scores'] = df['Score'].str.split()
         df = df.join(df['Set_Scores'].apply(extract_set_scores))
 
-        # Replace NaNs with -1
-        numeric_cols = [col for col in df.columns if df[col].dtype.kind in 'iuf']
-        df[numeric_cols] = df[numeric_cols].fillna(-1)
-
         # Drop orginal 'Scores' column
         df.drop(columns=['Score'], inplace=True)
+
+        # Replace Numeric NaNs with -1
+        numeric_cols = [col for col in df.columns if df[col].dtype.kind in 'iuf']
+        df[numeric_cols] = df[numeric_cols].fillna(-1) 
+
+        # Replace Non-Numeric NaNs with "Missing Data"
+        non_numeric_cols = [col for col in df.columns if col not in numeric_cols]
+        df[non_numeric_cols] = df[non_numeric_cols].fillna("Missing Data")
 
         # Convert all object-type columns to string type
         df = df.astype({col: 'string' for col in df.select_dtypes(include='object').columns})

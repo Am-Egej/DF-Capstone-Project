@@ -3,9 +3,9 @@ import os
 import pandas as pd
 
 def fetch_and_save_dataset(datasets = ["dissfya/wta-tennis-2007-2023-daily-update", "dissfya/atp-tennis-2000-2023daily-pull" ], output_dir=r"data/raw"):
+    count = 0
     for dataset_id in datasets:
         try:
-            count = 0
             print(f"📦 Downloading dataset: {dataset_id}")
             path = kagglehub.dataset_download(dataset_id)
 
@@ -27,9 +27,12 @@ def fetch_and_save_dataset(datasets = ["dissfya/wta-tennis-2007-2023-daily-updat
                 else:
                     print(f"⚠️ Skipped non-CSV file: {file}")
             print(f"{count} csv file(s) saved")
-            return count
+        
         except Exception as e:
             print("❌ Error during dataset fetch:", str(e))
+    
+    return count
+
 
 if __name__ == "__main__":
     datasets = ["dissfya/wta-tennis-2007-2023-daily-update", "dissfya/atp-tennis-2000-2023daily-pull" ]

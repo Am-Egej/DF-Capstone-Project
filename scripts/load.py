@@ -6,12 +6,14 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from scripts.config import DB_CONFIG
 
-def load_to_postgres(df, table_name = "tennis_matches"):
+def load_to_postgres(df, limit=False, table_name="tennis_matches"):
     try:
-        # Load the transformed data
-        df = df.head() # For testing purposes, to be deleted
-        df = df.astype(object)  # Converts all columns to native Python types, to be deleted
+        df = df.astype(object)
+        df = df.where(pd.notna(df), None)
 
+        if limit:
+            df = df.head() # For testing purposes, limit to 5 rows
+        
         # Connect to PostgreSQL
         with psycopg2.connect(**DB_CONFIG) as conn:
             with conn.cursor() as cursor:

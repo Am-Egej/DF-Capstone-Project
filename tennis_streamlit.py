@@ -109,9 +109,6 @@ with tabs[1]:
     st.dataframe(pivot_df)
 
 
-
-
-
 # Player Profile Tab
 with tabs[2]:
     # Title
@@ -138,7 +135,7 @@ with tabs[2]:
     losses = matches_played - wins
     win_pct = round((wins / matches_played) * 100, 2)
 
-    # 🧮 Rank Extraction
+    # Rank Extraction
     player_df["Rank"] = player_df.apply(
         lambda row: row["Rank_1"] if row["Player_1"] == selected_player else (
             row["Rank_2"] if row["Player_2"] == selected_player else None
@@ -217,12 +214,14 @@ with tabs[2]:
     })
     st.dataframe(summary_df)
 
+    st.dataframe(opponents)
+
 
 
 # Compare Players Tab
 with tabs[3]:
     st.header("Compare Players")
-    
+
     # Select, WTA or ATP
     # Select round
     # Select players to compare
@@ -231,11 +230,6 @@ with tabs[3]:
     ### Win rate in the selected round
     ### Rank
 
-
-    col1, col2 = st.columns(2)
-    with col1:
-        player1 = st.text_input("Player 1")
-    with col2:
-        player2 = st.text_input("Player 2")
+    
 
     

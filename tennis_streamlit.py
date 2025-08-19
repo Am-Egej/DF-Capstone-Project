@@ -219,17 +219,23 @@ with tabs[2]:
 
 
 
-
 # Compare Players Tab
 with tabs[3]:
     st.header("Compare Players")
+    
+    # Select, WTA or ATP
+    # Select round
+    # Select players to compare
+    ## Order:
+    ### Who won their last game?
+    ### Win rate in the selected round
+    ### Rank
+
+
     col1, col2 = st.columns(2)
     with col1:
         player1 = st.text_input("Player 1")
     with col2:
         player2 = st.text_input("Player 2")
 
-    if player1 and player2:
-        st.markdown(f"Comparing **{player1}** vs **{player2}**")
-        # Add comparison logic here
-        st.write("📈 Head-to-head: Player 1 leads 5–3")
+    

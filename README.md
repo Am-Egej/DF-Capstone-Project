@@ -180,7 +180,6 @@ DB_CONFIG = {
     'password': 'your_password', # From noodle
     'options': '-c search_path=mystic_manuscript'
 }
-
 </pre>
 
 ### Credentials for Streamlit app
@@ -190,14 +189,12 @@ In order to run the ETL pipeline from the main branch, please set up a `secrets.
 3. Popilate the file like this:
 
 <pre>
-
 DB_HOST = "your_host"
 DB_PORT = 5432
 DB_NAME = "your_db"
 DB_USER = "your_username"  # Fill in from noodle
 DB_PASSWORD = "your_password"  # Fill in from noodle
 DB_OPTIONS = "-c search_path=mystic_manuscript"
-
 </pre>
 
 ---
@@ -287,4 +284,3 @@ This project can be adapted for cloud automation using AWS services:
 Beginner-friendly contributions are welcome! Feel free to open issues, suggest improvements, or submit pull requests. 
 
 ---
-

@@ -137,6 +137,71 @@ Commits are made regularly with descriptive messages to track progress and chang
 
 ---
 
+## 🚀 Getting Started
+
+To run the project locally:
+
+```bash
+# Clone the repo
+git clone https://github.com/Am-Egej/DF-Capstone-Project.git
+cd df-capstone-project
+
+# For ETL Pipeline
+git switch etl_branch
+
+# For Streamlit app
+git switch main
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the ETL Pipeline
+python run_etl.py
+
+# Run the Streamlit app
+streamlit run tennis_streamlit.py
+```
+
+---
+
+## Setting up credentials
+### Credentials for ETL pipeline
+In order to run the ETL pipeline from the main branch, please set up a `config.py` file as follows:
+1. Navigate to `scripts` folder
+2. Create a new file called `config.py`
+3. Popilate the file like this:
+
+``
+DB_CONFIG = {
+    'host': 'your_host',
+    'port': 5432,
+    'dbname': 'your_db',
+    'user': 'your_username', # From noodle
+    'password': 'your_password', # From noodle
+    'options': '-c search_path=mystic_manuscript'
+}
+
+``
+
+### Credentials for Streamlit app
+In order to run the ETL pipeline from the main branch, please set up a `secrets.toml` file as follows:
+1. Navigate to `.streamlit` folder or create it if it does not exist yet
+2. Create a new file called `secrets.toml`
+3. Popilate the file like this:
+
+``
+
+DB_HOST = "your_host"
+DB_PORT = 5432
+DB_NAME = "your_db"
+DB_USER = "your_username"  # Fill in from noodle
+DB_PASSWORD = "your_password"  # Fill in from noodle
+DB_OPTIONS = "-c search_path=mystic_manuscript"
+
+``
+
+---
+
 ## 📁 Folder structure - ETL Branch (etl_branch):
 <pre>
 df-capstone-project/
@@ -163,8 +228,6 @@ df-capstone-project/
 └── run_etl.py                              # End to end run of ETL pipeline
 </pre>
 
----
-
 ## 📁 Folder structure - Streamlit Branch (main):
 <pre>
 df-capstone-project/
@@ -185,33 +248,6 @@ df-capstone-project/
 ├── requirements.txt                        # Python dependencies
 └── tennis_streamlit.py                     # Creates full Streamlit app with all visualisations
 </pre>
-
----
-
-## 🚀 Getting Started
-
-To run the project locally:
-
-```bash
-# Clone the repo
-git clone https://github.com/Am-Egej/DF-Capstone-Project.git
-cd df-capstone-project
-
-# For ETL Pipeline
-git switch etl_branch
-
-# For Streamlit app
-git switch main
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the ETL Pipeline
-python run_etl.py
-
-# Run the Streamlit app
-streamlit run tennis_streamlit.py
-```
 
 ---
 

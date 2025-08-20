@@ -1,28 +1,31 @@
-# DF-Capstone-Project
-This project extracts, transforms, and loads professional tennis match data (ATP and WTA) using Python scripts and PostgreSQL. 
-It is designed to help analyze player performance, tournament trends, and match outcomes.
-
-## 📁 Folder structure:
-<pre>
-df-capstone-project/
-├── data/
-│   ├── raw/               # Unprocessed files from Kaggle
-│   └── processed/         # Cleaned CSVs or intermediate outputs
-├── scripts/
-│   ├── extract.py         # Download and unzip Kaggle data
-│   ├── transform.py       # Clean and enrich data
-│   ├── load.py            # Load into PostgreSQL
-│   └── config.py          # DB credentials and constants
-├── notebooks/             # For exploration and debugging
-├── requirements.txt       # Python dependencies
-└── README.md              # Project overview
-</pre>
-
----
-
 # 🎾 Data Engineering - Tennis Project
 
 Welcome to the Data Engineering - Tennis project! This repository contains the full pipeline for extracting, transforming, loading, testing, and visualizing professional tennis match data. Whether you're a data engineer, analyst, or tennis enthusiast, this project offers a hands-on look at building a real-world data product from scratch. 
+
+---
+
+## 🎯 Project Goals
+
+- Build a robust ETL pipeline for tennis match data
+- Store and query data efficiently using PostgreSQL
+- Create interactive visualizations for player insights and comparisons
+- Practice production-grade data engineering workflows
+
+---
+
+## 🛠️ Tech Stack
+
+- **Python**
+  - `pandas` – Data manipulation and preprocessing  
+  - `SQLAlchemy` – ORM for PostgreSQL integration  
+  - `psycopg2` / `psycopg2-binary` – PostgreSQL connectivity  
+  - `Streamlit` – Interactive web app for visualizing tennis stats  
+  - `Altair` & `Plotly` – Declarative and interactive visualizations  
+  - `kagglehub` – Seamless access to Kaggle datasets via API  
+
+- **PostgreSQL** – Relational database for storing and querying tennis data  
+- **Kaggle API** – Programmatic access to tennis datasets  
+- **Git & GitHub** – Version control and collaboration
 
 ---
 
@@ -103,6 +106,55 @@ This project is organized into four main epics, each representing a key phase in
 - ✅ Verify app functionality and performance
 
 ---
+## 📁 Folder structure - ETL Branch (etl_branch):
+<pre>
+df-capstone-project/
+├── data/
+│   ├── raw/                                # Unprocessed files from Kaggle
+│   │   └── transformed_tennis_data.csv
+│   └── processed/                          # Cleaned CSVs or intermediate outputs
+│       ├── atp_tennis.csv           
+│       └── wta.csv     
+├── notebooks/                              # Data exploration notebook(s)
+│   └── capstone_analysis.ipynb 
+├── scripts/
+│   ├── __init__.py                         
+│   ├── config.py                           # DB credentials and constants
+│   ├── extract.py                          # Download and unzip Kaggle data                       
+│   ├── load.py                             # Load into PostgreSQL
+│   └── transform.py                        # Clean and enrich data
+├── tests/
+│   ├── test_extract.py                     # Tests for successful data extraction                     
+│   ├── load.py                             # Tests for successful data loading 
+│   └── transform.py                        # Tests for successful data transformation 
+├── README.md                               # Project overview
+├── requirements.txt                        # Python dependencies
+└── run_etl.py                              # End to end run of ETL pipeline
+</pre>
+
+---
+
+## 📁 Folder structure - Streamlit Branch (main):
+<pre>
+df-capstone-project/
+├── .streamlit/          
+│   └── secrets.toml                        # DB credentials and constants for local running of streamlit app
+├── data/     
+│   ├── updates/    
+│   │   ├── postgreSQL_tennis_data.csv      # Table from PostgreSQL - Updated every run               
+│   └── postgreSQL_tennis_data.csv          # Local CSV data for users without credentials (not updated)
+├── streamlit_scripts/
+│   ├── __init__.py                         
+│   ├── compare.py                          # Creates Player Comparisons visualisation
+│   ├── player.py                           # Creates Player insights visualiisation                  
+│   ├── rankings.py                         # Creates Rankings visualisation
+│   ├── sql_to_csv.py                       # Extarcts data from PostgreSQL and loads to CSV
+│   └── welcome.py                          # Creates welcome visualisation 
+├── README.md                               # Project overview
+├── requirements.txt                        # Python dependencies
+└── tennis_streamlit.py                     # Creates full Streamlit app with all visualisations
+</pre>
+---
 
 ## 🚀 Getting Started
 
@@ -116,8 +168,14 @@ cd df-capstone-project
 # For ETL Pipeline
 git switch etl_branch
 
+# For Streamlit app
+git switch main
+
 # Install dependencies
 pip install -r requirements.txt
+
+# Run the ETL Pipeline
+python run_etl.py
 
 # Run the Streamlit app
 streamlit run tennis_streamlit.py

@@ -16,8 +16,10 @@ st.set_page_config(page_title="Tennis Dashboard", layout="wide")
 tabs = st.tabs(["🏠🎾 Welcome", "📊 Leaderboard", "👤🎾 Player Profile", "⚖️ Compare Players"])
 
 # Read PostgreSQL to csv
-df = extract_from_postgreSQL()
-#df = pd.read_csv('data/PostgreSQL_tennis_data.csv', parse_dates=['date'], low_memory=False)
+try:
+    df = extract_from_postgreSQL()
+except:
+    df = pd.read_csv('data/PostgreSQL_tennis_data.csv', parse_dates=['date'], low_memory=False)
 
 # Convert all column names to lowercase
 df.columns = df.columns.str.lower()

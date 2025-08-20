@@ -9,7 +9,6 @@ from streamlit_scripts.player import player
 from streamlit_scripts.compare import compare
 
 
-
 # Set page configuration
 st.set_page_config(page_title="Tennis Dashboard", layout="wide")
 
@@ -21,6 +20,7 @@ df = pd.read_csv('data/processed/transformed_tennis_data.csv', parse_dates=['Dat
 # Welcome Tab
 with tabs[0]:
     welcome()
+
 
 # Rankings Tab
 with tabs[1]:

@@ -84,6 +84,8 @@ def rankings(df):
     pivot_df = pivot_df.reset_index(drop=True)
     pivot_df.index = pivot_df.index + 1
 
+    pivot_df.columns = pivot_df.columns.str.replace('_', ' ').str.title()
+
     st.dataframe(pivot_df)
 
 if __name__ == "__main__":

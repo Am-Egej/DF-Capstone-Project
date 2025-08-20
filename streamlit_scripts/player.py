@@ -116,12 +116,12 @@ def player(df):
     # Top Opponents
     st.subheader(f"👥 Most Frequently faced opponent(s) (2020 - 2024) - {selected_player}")
     top_opponents = player_df["opponent"].value_counts().head(5).reset_index()
-    top_opponents.columns = ["opponent", "matches"]
+    top_opponents.columns = ["Opponent", "Matches"]
 
     chart = alt.Chart(top_opponents).mark_bar().encode(
-        x=alt.X("opponent", sort="-y"),
-        y="matches",
-        tooltip=["opponent", "matches"]
+        x=alt.X("Opponent", sort="-y"),
+        y="Matches",
+        tooltip=["Opponent", "Matches"]
     ).properties(
         title="Top 5 Most Frequent Opponents",
         width=600,

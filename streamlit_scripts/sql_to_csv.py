@@ -21,7 +21,7 @@ def extract_from_postgreSQL(table_name="tennis_matches"):
         df = pd.read_sql_query(query, engine)
 
         # Save to CSV
-        df.to_csv("data/PostgreSQL_tennis_data.csv", index=False)
+        df.to_csv("data/postgreSQL_tennis_data.csv", index=False)
 
         return df
 

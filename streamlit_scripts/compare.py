@@ -113,7 +113,7 @@ def compare(df):
 
 if __name__ == "__main__":
     # Read PostgreSQL to csv
-    df = pd.read_csv('data/PostgreSQL_tennis_data.csv', parse_dates=['date'], low_memory=False)
+    df = pd.read_csv('data/postgreSQL_tennis_data.csv', parse_dates=['date'], low_memory=False)
 
     # Convert all column names to lowercase
     df.columns = df.columns.str.lower()

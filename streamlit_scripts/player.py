@@ -49,7 +49,7 @@ def player(df):
                    'Round Robin', 
                    'Quarterfinals', 
                    'Semifinals', 
-                   'The Final'
+                   'The Final',
                    ]
     round_order = [r.upper() for r in round_order]
 

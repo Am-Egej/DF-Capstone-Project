@@ -6,20 +6,20 @@ def rankings(df):
     # Display grouped bar chart
     st.title("Top 10 Players with Most Wins by Surface")
 
-    # Multiselect for Source
-    source_options = sorted(df['Source'].dropna().unique())
-    selected_sources = st.multiselect(
-        "Select Tour(s)", 
-        options=source_options, 
-        default=source_options
-    )
-
     # Multiselect for Surface
     surface_options = sorted(df['Surface'].dropna().unique())
     selected_surfaces = st.multiselect(
         "Select Surface(s)", 
         options=surface_options, 
         default=surface_options
+    )
+
+    # Multiselect for Source
+    source_options = sorted(df['Source'].dropna().unique())
+    selected_sources = st.multiselect(
+        "Select Tour(s)", 
+        options=source_options, 
+        default=source_options
     )
 
     # Filter by both Surface and Source

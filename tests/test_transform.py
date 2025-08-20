@@ -72,5 +72,5 @@ def test_transform_data_with_mocked_csvs():
     assert result_df.iloc[0]["Set2_Player1"] == 3
     assert result_df.iloc[0]["Set2_Player2"] == 6
 
-    # Check that string columns are title-cased
-    assert all(result_df["Player"].str.contains("Nadal|Djokovic"))
+    # Check that string columns are upper-cased
+    assert all(result_df["Player"].str.contains("NADAL|DJOKOVIC"))

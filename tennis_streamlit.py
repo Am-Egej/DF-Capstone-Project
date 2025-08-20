@@ -14,7 +14,7 @@ from streamlit_scripts.compare import compare
 st.set_page_config(page_title="Tennis Dashboard", layout="wide")
 
 # Create tabs
-tabs = st.tabs(["🏠 Welcome", "📊 Rankings", "🎾 Player Profile", "⚔️ Compare Players"])
+tabs = st.tabs(["🏠🎾 Welcome", "📊 Leaderboard", "👤🎾 Player Profile", "⚖️ Compare Players"])
 
 df = pd.read_csv('data/processed/transformed_tennis_data.csv', parse_dates=['Date'], low_memory=False)
 

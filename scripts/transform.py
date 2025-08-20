@@ -63,11 +63,8 @@ def transform_data(dfs=[], save_it=True):
         # Convert all object-type columns to string type
         df = df.astype({col: 'string' for col in df.select_dtypes(include='object').columns})
         
-        # Apply title case to all string-type columns
-        df[df.select_dtypes(include='string').columns] = df.select_dtypes(include='string').apply(lambda x: x.str.title())
-
-        # Change 'Source' back to uppercase
-        df['Source'] = df['Source'].str.upper()
+        # Apply upper case to all string-type columns
+        df[df.select_dtypes(include='string').columns] = df.select_dtypes(include='string').apply(lambda x: x.str.upper())
 
         # Append the the transformed DataFrame to transformed_dfs
         transformed_dfs.append(df)

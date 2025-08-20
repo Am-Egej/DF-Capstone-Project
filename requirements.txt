@@ -1,8 +1,6 @@
 streamlit
 pandas
-numpy
 altair
 plotly
+psycopg2
 psycopg2-binary
-kagglehub
-pytest

@@ -32,3 +32,4 @@ def extract_from_postgreSQL(table_name="tennis_matches"):
 
 if __name__ == "__main__":
     data = extract_from_postgreSQL()
+    print(data.head())

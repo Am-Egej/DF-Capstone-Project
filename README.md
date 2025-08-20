@@ -171,7 +171,7 @@ In order to run the ETL pipeline from the main branch, please set up a `config.p
 2. Create a new file called `config.py`
 3. Popilate the file like this:
 
-``
+<pre>
 DB_CONFIG = {
     'host': 'your_host',
     'port': 5432,
@@ -180,8 +180,7 @@ DB_CONFIG = {
     'password': 'your_password', # From noodle
     'options': '-c search_path=mystic_manuscript'
 }
-
-``
+</pre>
 
 ### Credentials for Streamlit app
 In order to run the ETL pipeline from the main branch, please set up a `secrets.toml` file as follows:
@@ -189,16 +188,14 @@ In order to run the ETL pipeline from the main branch, please set up a `secrets.
 2. Create a new file called `secrets.toml`
 3. Popilate the file like this:
 
-``
-
+<pre>
 DB_HOST = "your_host"
 DB_PORT = 5432
 DB_NAME = "your_db"
 DB_USER = "your_username"  # Fill in from noodle
 DB_PASSWORD = "your_password"  # Fill in from noodle
 DB_OPTIONS = "-c search_path=mystic_manuscript"
-
-``
+</pre>
 
 ---
 

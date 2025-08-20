@@ -113,6 +113,9 @@ To run the project locally:
 git clone https://github.com/Am-Egej/DF-Capstone-Project.git
 cd df-capstone-project
 
+# For ETL Pipeline
+git switch etl_branch
+
 # Install dependencies
 pip install -r requirements.txt
 

@@ -135,7 +135,6 @@ This project follows a branch-based development strategy:
 
 Commits are made regularly with descriptive messages to track progress and changes. 
 
-
 ---
 
 ## 📁 Folder structure - ETL Branch (etl_branch):
@@ -186,6 +185,7 @@ df-capstone-project/
 ├── requirements.txt                        # Python dependencies
 └── tennis_streamlit.py                     # Creates full Streamlit app with all visualisations
 </pre>
+
 ---
 
 ## 🚀 Getting Started
@@ -243,7 +243,6 @@ This project can be adapted for cloud automation using AWS services:
 - **CloudWatch** – Monitor logs and performance
 - **EC2 or Elastic Beanstalk** – Deploy the Streamlit app
 - **Step Functions** – Orchestrate multi-step ETL workflows
-
 
 ---
 

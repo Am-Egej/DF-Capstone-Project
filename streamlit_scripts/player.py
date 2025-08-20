@@ -43,7 +43,7 @@ def player(df):
 
     # Round Analysis
     round_order = ['1St Round', '2Nd Round', '3Rd Round', '4Th Round', 
-                'Round Robin', 'Quarterfinals', 'Semifinals', 'The Final']
+                   'Round Robin', 'Quarterfinals', 'Semifinals', 'The Final']
     round_order = [r.upper() for r in round_order]
 
     round_map = {round_name: i for i, round_name in enumerate(round_order)}

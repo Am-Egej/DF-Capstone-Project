@@ -15,7 +15,11 @@ st.set_page_config(page_title="Tennis Dashboard", layout="wide")
 # Create tabs
 tabs = st.tabs(["🏠🎾 Welcome", "📊 Leaderboard", "👤🎾 Player Profile", "⚖️ Compare Players"])
 
-df = pd.read_csv('data/PostgreSQL_tennis_data.csv', parse_dates=['Date'], low_memory=False)
+# Read PostgreSQL to csv
+df = pd.read_csv('data/PostgreSQL_tennis_data.csv', parse_dates=['date'], low_memory=False)
+
+# Convert all column names to lowercase
+df.columns = df.columns.str.lower()
 
 # Welcome Tab
 with tabs[0]:

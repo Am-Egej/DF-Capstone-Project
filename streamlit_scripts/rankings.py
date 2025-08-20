@@ -6,50 +6,50 @@ def rankings(df):
     # Display grouped bar chart
     st.title("Top 10 Players with Most Wins by Surface")
 
-    # Multiselect for Surface
-    surface_options = sorted(df['Surface'].dropna().unique())
+    # Multiselect for surface
+    surface_options = sorted(df['surface'].dropna().unique())
     selected_surfaces = st.multiselect(
         "Select Surface(s)", 
         options=surface_options, 
         default=surface_options
     )
 
-    # Multiselect for Source
-    source_options = sorted(df['Source'].dropna().unique())
+    # Multiselect for source
+    source_options = sorted(df['source'].dropna().unique())
     selected_sources = st.multiselect(
         "Select Tour(s)", 
         options=source_options, 
         default=source_options
     )
 
-    # Filter by both Surface and Source
+    # Filter by both surface and source
     filtered_df = df[
-        df['Surface'].isin(selected_surfaces) & 
-        df['Source'].isin(selected_sources)
+        df['surface'].isin(selected_surfaces) & 
+        df['source'].isin(selected_sources)
     ]
 
     # Count wins per player per surface
     wins_by_surface = (
-        filtered_df.groupby(['Winner', 'Surface', 'Source'])
+        filtered_df.groupby(['winner', 'surface', 'source'])
         .size()
-        .reset_index(name='Wins')
+        .reset_index(name='wins')
     )
 
     # Get top N players by total wins
     top_n = st.slider("Number of Top Players to Display", min_value=1, max_value=50, value=10)
     top_players = (
-        wins_by_surface.groupby('Winner')['Wins']
+        wins_by_surface.groupby('winner')['wins']
         .sum()
         .nlargest(top_n)
         .index
     )
 
     # Filter to top players only
-    wins_by_surface = wins_by_surface[wins_by_surface['Winner'].isin(top_players)]
+    wins_by_surface = wins_by_surface[wins_by_surface['winner'].isin(top_players)]
 
     # Sort players by total wins for consistent chart order
     player_order = (
-        wins_by_surface.groupby('Winner')['Wins']
+        wins_by_surface.groupby('winner')['wins']
         .sum()
         .sort_values(ascending=False)
         .index.tolist()
@@ -57,10 +57,10 @@ def rankings(df):
 
     # Altair grouped bar chart
     chart = alt.Chart(wins_by_surface).mark_bar().encode(
-        x=alt.X('Winner:N', sort=player_order, title='Player'),
-        y=alt.Y('Wins:Q', title='Number of Wins'),
-        color=alt.Color('Surface:N', title='Surface'),
-        tooltip=['Winner', 'Surface', 'Wins']
+        x=alt.X('winner:N', sort=player_order, title='Player'),
+        y=alt.Y('wins:Q', title='Number of Wins'),
+        color=alt.Color('surface:N', title='Surface'),
+        tooltip=['winner', 'surface', 'wins']
     ).properties(
         title='Wins by Surface for Each Player',
         width=700,
@@ -71,24 +71,27 @@ def rankings(df):
 
     # Show pivoted table for reference
     pivot_df = wins_by_surface.pivot_table(
-        index=['Winner', 'Source'],
-        columns='Surface',
-        values='Wins',
+        index=['winner', 'source'],
+        columns='surface',
+        values='wins',
         fill_value=0
     ).reset_index()
 
-
-    pivot_df.columns = ['Player', 'Source'] + [f"{col} Wins" for col in pivot_df.columns[2:]]
-    pivot_df['Total (Selected surfaces)'] = pivot_df.iloc[:, 2:].sum(axis=1)
-    pivot_df = pivot_df.sort_values('Total (Selected surfaces)', ascending=False).head(top_n)
+    pivot_df.columns = ['player', 'source'] + [f"{col} wins" for col in pivot_df.columns[2:]]
+    pivot_df['total (selected surfaces)'] = pivot_df.iloc[:, 2:].sum(axis=1)
+    pivot_df = pivot_df.sort_values('total (selected surfaces)', ascending=False).head(top_n)
 
     pivot_df = pivot_df.reset_index(drop=True)
     pivot_df.index = pivot_df.index + 1
 
     st.dataframe(pivot_df)
 
-
-
 if __name__ == "__main__":
-    df = pd.read_csv('data/processed/transformed_tennis_data.csv', parse_dates=['Date'], low_memory=False)
+    # Read PostgreSQL to csv
+    df = pd.read_csv('data/PostgreSQL_tennis_data.csv', parse_dates=['date'], low_memory=False)
+
+    # Convert all column names to lowercase
+    df.columns = df.columns.str.lower()
+
+    # Display rankings
     rankings(df)

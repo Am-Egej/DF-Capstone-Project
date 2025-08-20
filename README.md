@@ -13,6 +13,24 @@ Welcome to the Data Engineering - Tennis project! This repository contains the f
 
 ---
 
+## 📊 Project Description
+
+This project explores professional tennis match data sourced from [Kaggle](https://www.kaggle.com/datasets). The dataset includes match-level statistics for ATP and WTA tours, covering player names, rankings, surfaces, scores, and outcomes.
+
+### 🔍 Key analytical Questions
+- Which players have the highest number of wins?
+- How do player rankings evolve over time?
+- Who are the most frequent opponents for each player?
+- How does player rank vs number of wins change over time?
+
+### 📈 Summary of key findings
+- The players with the most wins are mostly men with only 2 women appearing in the top 10.
+- Ranking trajectories reveal consistent improvement for emerging players like Coco Gauff.
+- Frequent matchups highlight rivalries and tour dynamics.
+- Players' ranks tends to improve as number of wins increase
+
+---
+
 ## 🛠️ Tech Stack
 
 - **Python**
@@ -105,7 +123,21 @@ This project is organized into four main epics, each representing a key phase in
 - ✅ Add tooltips and hover effects for charts
 - ✅ Verify app functionality and performance
 
+
 ---
+
+## 🌿 Development Workflow
+
+This project follows a branch-based development strategy:
+
+- `main` – Contains the Streamlit app and visualizations
+- `etl_branch` – Contains the ETL pipeline and data transformation scripts
+
+Commits are made regularly with descriptive messages to track progress and changes. 
+
+
+---
+
 ## 📁 Folder structure - ETL Branch (etl_branch):
 <pre>
 df-capstone-project/
@@ -180,6 +212,38 @@ python run_etl.py
 # Run the Streamlit app
 streamlit run tennis_streamlit.py
 ```
+
+---
+
+## ⚙️ Engineering Considerations
+
+### 🔄 Query Optimization
+If the dataset grows significantly, the following strategies will be used to optimize query performance:
+- Indexing key columns (e.g., `player_name`, `date`, `surface`) in PostgreSQL
+- Partitioning large tables by year or tour type
+- Using materialized views for frequently accessed aggregates
+- Caching query results in the Streamlit app for repeated access
+
+### 🛑 Error Handling & Logging
+- Custom exceptions are used in ETL scripts to catch and report failures (e.g., missing files, DB connection errors)
+- Logging can be implemented using Python’s `logging` module to track pipeline execution
+- Logs can also be extended to integrate with AWS CloudWatch for centralized monitoring
+
+### 🔐 Security & Privacy
+- API keys were not required to access this data
+- Access information are stored securely using `config.py` and `secrets.toml`
+- Sensitive data (e.g., player health or biometric info) is not included in the dataset
+- Access to the database is restricted via role-based permissions
+
+### ☁️ Cloud Deployment (AWS)
+This project can be adapted for cloud automation using AWS services:
+- **S3** – Store raw and processed datasets
+- **Lambda** – Trigger ETL jobs on a schedule
+- **RDS (PostgreSQL)** – Host the relational database
+- **CloudWatch** – Monitor logs and performance
+- **EC2 or Elastic Beanstalk** – Deploy the Streamlit app
+- **Step Functions** – Orchestrate multi-step ETL workflows
+
 
 ---
 

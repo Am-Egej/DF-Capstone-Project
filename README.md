@@ -1,6 +1,6 @@
 # 🎾 Data Engineering - Tennis Project
 
-Welcome to the Data Engineering - Tennis project! This repository contains the full pipeline for extracting, transforming, loading, testing, and visualizing professional tennis match data. Whether you're a data engineer, analyst, or tennis enthusiast, this project offers a hands-on look at building a real-world data product from scratch. 
+Welcome to the Data Engineering - Tennis project! This repository contains the full pipeline for extracting, transforming, loading, testing, and visualizing professional tennis match data from 2020 to 2024. Whether you're a data engineer, analyst, or tennis enthusiast, this project offers a hands-on look at building a real-world data product from scratch. 
 
 ---
 
@@ -43,7 +43,7 @@ This project explores professional tennis match data sourced from [Kaggle](https
 
 - **PostgreSQL** – Relational database for storing and querying tennis data  
 - **Kaggle API** – Programmatic access to tennis datasets  
-- **Git & GitHub** – Version control and collaboration
+- **Git & GitHub** – Version control and branching.
 
 ---
 
@@ -178,7 +178,7 @@ DB_CONFIG = {
     'dbname': 'your_db',
     'user': 'your_username', # From noodle
     'password': 'your_password', # From noodle
-    'options': '-c search_path=mystic_manuscript'
+    'options': '-c search_path=your_schema'
 }
 </pre>
 
@@ -194,7 +194,7 @@ DB_PORT = 5432
 DB_NAME = "your_db"
 DB_USER = "your_username"  # Fill in from noodle
 DB_PASSWORD = "your_password"  # Fill in from noodle
-DB_OPTIONS = "-c search_path=mystic_manuscript"
+DB_OPTIONS = "-c search_path=your_schema"
 </pre>
 
 ---
@@ -284,3 +284,4 @@ This project can be adapted for cloud automation using AWS services:
 Beginner-friendly contributions are welcome! Feel free to open issues, suggest improvements, or submit pull requests. 
 
 ---
+
